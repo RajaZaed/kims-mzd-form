@@ -189,18 +189,7 @@
   
 
 <script>
-    // Hamburger Toggle Script
-   
-
-    // three dot
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.getElementById("menu");
-
-    hamburger.addEventListener("click", () => {
-        menu.classList.toggle("active");
-    });
-// three dot
-
+    
 document.getElementById("admission-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -214,7 +203,7 @@ document.getElementById("admission-form").addEventListener("submit", function (e
   const guardianNo = document.getElementById("guardian-no").value;
   const relation = document.getElementById("relation").value;
 
-  // Collect education details (up to 3 entries)
+  // Collect education details
   const education1 = {
     qualification: document.getElementById("qualification1").value,
     institution: document.getElementById("institution1").value,
@@ -239,44 +228,48 @@ document.getElementById("admission-form").addEventListener("submit", function (e
     board: document.getElementById("board3").value,
   };
 
-  // Collect course level
+  // Course level
   const courseLevels = Array.from(document.querySelectorAll('input[name="level"]:checked'))
     .map((checkbox) => checkbox.value)
     .join(", ");
 
   const fieldOfStudy = document.getElementById("field-of-study").value;
 
-  // Construct the WhatsApp message
+  // Construct WhatsApp message (using \n for new lines)
   const message = `
-    *Admission Form Submission*%0A
-    *Personal Information*%0A
-    Name: ${name}%0A
-    Father's Name: ${fatherName}%0A
-    Date of Birth: ${dob}%0A
-    Address: ${address}%0A
-    Phone Number: ${phone}%0A
-    Email: ${email}%0A
-    Guardian's Phone Number: ${guardianNo}%0A
-    Relation with Student: ${relation}%0A%0A
+*Admission Form Submission*
 
-    *Education Details*%0A
-    1. Qualification: ${education1.qualification}, Institution: ${education1.institution}, Marks/Grade: ${education1.marks}, Year: ${education1.year}, Board: ${education1.board}%0A
-    2. Qualification: ${education2.qualification}, Institution: ${education2.institution}, Marks/Grade: ${education2.marks}, Year: ${education2.year}, Board: ${education2.board}%0A
-    3. Qualification: ${education3.qualification}, Institution: ${education3.institution}, Marks/Grade: ${education3.marks}, Year: ${education3.year}, Board: ${education3.board}%0A%0A
+*Personal Information*
+Name: ${name}
+Father's Name: ${fatherName}
+Date of Birth: ${dob}
+Address: ${address}
+Phone Number: ${phone}
+Email: ${email}
+Guardian's Phone Number: ${guardianNo}
+Relation with Student: ${relation}
 
-    *Level of Course*%0A
-    Selected Levels: ${courseLevels}%0A
-    Field of Study: ${fieldOfStudy}%0A%0A
+*Education Details*
+1. Qualification: ${education1.qualification}, Institution: ${education1.institution}, Marks/Grade: ${education1.marks}, Year: ${education1.year}, Board: ${education1.board}
+2. Qualification: ${education2.qualification}, Institution: ${education2.institution}, Marks/Grade: ${education2.marks}, Year: ${education2.year}, Board: ${education2.board}
+3. Qualification: ${education3.qualification}, Institution: ${education3.institution}, Marks/Grade: ${education3.marks}, Year: ${education3.year}, Board: ${education3.board}
 
-    *Declaration*%0A
-    I solemnly declare that I will abide by the rules and regulations of the institute and the information given above is correct to the best of my knowledge.
+*Level of Course*
+Selected Levels: ${courseLevels}
+Field of Study: ${fieldOfStudy}
+
+*Declaration*
+I solemnly declare that I will abide by the rules and regulations of the institute and the information given above is correct to the best of my knowledge.
   `;
 
-  // Send the message via WhatsApp
+  // ✅ WhatsApp link (Pakistan format: 92 + number without 0)
   const whatsappLink = `https://wa.me/923558110001?text=${encodeURIComponent(message)}`;
 
+  // Open WhatsApp
   window.open(whatsappLink, "_blank");
 });
+
+
 
 </script>
 </body>
